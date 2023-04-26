@@ -31,6 +31,7 @@ func main() {
 		result.Data = make([]models.ExperimentItem, 0)
 		err := db.SelectContext(c.Context(), &result.Data, sqlite.QueryGetData)
 		if err != nil {
+			log.Printf("err %v\n", err)
 			c.Status(http.StatusInternalServerError).SendString(err.Error())
 		}
 		return c.JSON(result)
@@ -44,10 +45,12 @@ func main() {
 		_, err = db.ExecContext(c.Context(), sqlite.QueryInsertData, item.SSID, item.RSSI, item.Time)
 		if err != nil {
 			log.Printf("err %v with data %v\n", err, item)
-			c.Status(http.StatusInternalServerError).SendString(err.Error())
+			c.Status(http.StatusInternalServerError).JSON(models.SuccessCauseResponse{
+				Success: false, Cause: err.Error(),
+			})
 		}
 		log.Printf("new req with data %v\n", item)
-		return c.SendStatus(http.StatusOK)
+		return c.Status(http.StatusOK).JSON(models.SuccessCauseResponse{Success: true})
 	})
 
 	app.Listen(":3000")
