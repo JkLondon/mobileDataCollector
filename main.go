@@ -45,6 +45,7 @@ func main() {
 		if err != nil {
 			c.Status(http.StatusInternalServerError).SendString(err.Error())
 		}
+		log.Printf("new req with data %v\n", item)
 		return c.SendStatus(http.StatusOK)
 	})
 
