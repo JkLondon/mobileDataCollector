@@ -43,6 +43,7 @@ func main() {
 		}
 		_, err = db.ExecContext(c.Context(), sqlite.QueryInsertData, item.SSID, item.RSSI, item.Time)
 		if err != nil {
+			log.Printf("err %v with data %v\n", err, item)
 			c.Status(http.StatusInternalServerError).SendString(err.Error())
 		}
 		log.Printf("new req with data %v\n", item)
