@@ -12,8 +12,8 @@ const (
     CurrentTime TEXT
 );`
 	QueryGetData = `
-SELECT id, ssid, RSSI, CurrentTime FROM experiment`
+SELECT id, SSID, RSSI, CurrentTime FROM experiment`
 	QueryInsertData = `
-	INSERT INTO experiment (ssid, RSSI, CurrentTime)
+	INSERT INTO experiment (SSID, RSSI, CurrentTime)
 	VALUES ($1, $2, $3);`
 )

@@ -3,7 +3,7 @@ package models
 type ExperimentItem struct {
 	Id   int    `json:"id,omitempty" db:"id"`
 	RSSI int    `json:"rssi" db:"RSSI"`
-	SSID string `json:"ssid" db:"ssid"`
+	SSID string `json:"ssid" db:"SSID"`
 	Time string `json:"time" db:"CurrentTime"`
 }
 
