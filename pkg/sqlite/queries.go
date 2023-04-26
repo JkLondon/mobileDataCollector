@@ -7,12 +7,13 @@ const (
     id          INTEGER not null
         constraint orders_pk
             primary key autoincrement,
+    SSID TEXT,
     RSSI INTEGER,
     CurrentTime TEXT
 );`
 	QueryGetData = `
-SELECT id, RSSI, CurrentTime FROM experiment`
+SELECT id, ssid, RSSI, CurrentTime FROM experiment`
 	QueryInsertData = `
-	INSERT INTO experiment (RSSI, CurrentTime)
-	VALUES ($1, $2);`
+	INSERT INTO experiment (ssid, RSSI, CurrentTime)
+	VALUES ($1, $2, $3);`
 )

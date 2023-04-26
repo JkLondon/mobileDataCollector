@@ -41,7 +41,7 @@ func main() {
 		if err := c.BodyParser(item); err != nil {
 			return c.Status(http.StatusBadRequest).SendString(err.Error())
 		}
-		_, err = db.ExecContext(c.Context(), sqlite.QueryInsertData, item.RSSI, item.Time)
+		_, err = db.ExecContext(c.Context(), sqlite.QueryInsertData, item.SSID, item.RSSI, item.Time)
 		if err != nil {
 			c.Status(http.StatusInternalServerError).SendString(err.Error())
 		}
