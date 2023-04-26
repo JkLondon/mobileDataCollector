@@ -10,3 +10,8 @@ type ExperimentItem struct {
 type ExperimentData struct {
 	Data []ExperimentItem `json:"data,omitempty"`
 }
+
+type SuccessCauseResponse struct {
+	Success bool   `json:"success,omitempty"`
+	Cause   string `json:"cause,omitempty"`
+}
